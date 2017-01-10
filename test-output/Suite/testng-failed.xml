@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test name="Sign up(failed)">
+    <classes>
+      <class name="luckystars.Signin">
+        <methods>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- luckystars.Signin -->
+      <class name="luckystars.Signup">
+        <methods>
+          <include name="signup_profile_pic_edit"/>
+          <include name="signup_profile_firstname_edit"/>
+          <include name="Signup_changenumber"/>
+          <include name="signup_profile_lasttname_edit"/>
+          <include name="signup_profile_birthdate"/>
+          <include name="signup_leftmenu_myhistory"/>
+          <include name="signup_profile_mobileno_emailid"/>
+          <include name="Signup_success"/>
+          <include name="Signup_Customersupport"/>
+          <include name="signup_profile_pincode"/>
+          <include name="signup_leftmenu_feedback"/>
+          <include name="signup_profile_gender"/>
+          <include name="signup_leftmenu_winners"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- luckystars.Signup -->
+    </classes>
+  </test> <!-- Sign up(failed) -->
+  <test name="Sign In(failed)">
+    <classes>
+      <class name="luckystars.Signin">
+        <methods>
+          <include name="signin_leftmenu_feedback"/>
+          <include name="signin_leftmenu_winners"/>
+          <include name="signin_profile_gender"/>
+          <include name="signin_profile_pic_edit"/>
+          <include name="setUp"/>
+          <include name="signin_profile_lasttname_edit"/>
+          <include name="signin_profile_birthdate"/>
+          <include name="Signin_success"/>
+          <include name="signin_profile_firstname_edit"/>
+          <include name="signin_leftmenu_myhistory"/>
+          <include name="signin_profile_mobileno_emailid"/>
+          <include name="signin_profile_pincode"/>
+        </methods>
+      </class> <!-- luckystars.Signin -->
+      <class name="luckystars.Signup">
+        <methods>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- luckystars.Signup -->
+    </classes>
+  </test> <!-- Sign In(failed) -->
+</suite> <!-- Failed suite [Suite] -->

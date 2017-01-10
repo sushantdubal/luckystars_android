@@ -74,7 +74,7 @@ public void Signup_success()
 
 	    driver.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click();
 
-       	
+       	System.out.println("Great");
 	
 
     }

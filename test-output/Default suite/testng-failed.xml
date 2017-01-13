@@ -5,9 +5,9 @@
     <classes>
       <class name="luckystars.TC0001_Signin_success">
         <methods>
-          <include name="Signup_success"/>
+          <include name="forallUsers"/>
+          <include name="Signin_success"/>
           <include name="setUp"/>
-          <include name="teardown"/>
         </methods>
       </class> <!-- luckystars.TC0001_Signin_success -->
     </classes>

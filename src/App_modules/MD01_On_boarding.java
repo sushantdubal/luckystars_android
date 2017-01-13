@@ -1,4 +1,4 @@
-package luckystars;
+package App_modules;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class On_boarding
+public class MD01_On_boarding
 {
 
 	AndroidDriver driver;
@@ -93,15 +93,101 @@ public class On_boarding
 	   Assert.assertEquals(msg, "An SMS with a verification code will be sent to this number.");
 	   
 	   System.out.print("Asseration passed");
-	    
-	    
-	    
-	    
-	    
-	    
-
-
 	}
+	
+	   @Test 
+	   public void Signup_Customersupport() 
+	   {
+	   	driver.findElement(By.id("in.interactive.luckystars:id/bt_getStarted")).click();
+
+	       driver.findElement(By.id("in.interactive.luckystars:id/input_layout_mobile_no")).sendKeys("9561192140");
+
+	       driver.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
+
+	       driver.findElement(By.id("android:id/button1")).click();
+
+	       driver.findElement(By.id("in.interactive.luckystars:id/otpET")).sendKeys("");
+	       
+	       driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+	       
+	       driver.findElement(By.id("in.interactive.luckystars:id/resentBtn")).click();
+	       
+	       driver.hideKeyboard();
+	       
+	       driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+	       
+	       driver.findElement(By.id("in.interactive.luckystars:id/tv_customer_support")).click();
+	       
+	       driver.findElement(By.id("in.interactive.luckystars:id/et_feedback_message")).sendKeys("Facing issues with sign up");
+	       
+	       driver.navigate().back();
+	       
+	       driver.findElement(By.id("in.interactive.luckystars:id/iv_screen_shot")).click();
+	       
+	       //Left menu-Winners-Feedback-Permission-allow
+	   	driver.findElement(By.name("OK")).click();
+	   	    
+	   	    //Permission- read & write
+	       driver.findElement(By.name("Allow")).click();
+	   	    
+	   	    //Permissions-
+	   	driver.findElement(By.name("Allow")).click();
+	   	    
+	   	  //Left menu-Winners-Feedback-screenshot from gallery
+	   	 driver.findElement(By.name("Gallery")).click();
+	   	    
+	   	  //Left menu-Winners-Feedback-screenshot from gallery- click on gallery
+	   	 driver.findElement(By.name("Gallery")).click();
+	   	    
+	   	    ////Left menu-Winners-Feedback-screenshot from gallery- click on cancel
+	   	 driver.findElement(By.name("Cancel")).click();
+	   	    
+	   	 driver.findElement(By.name("in.interactive.luckystars:id/btn_submit")).click();
+	   	    
+	   	 driver.findElement(By.name("in.interactive.luckystars:id/action_edit")).click();
+	   	
+	     }
+	   
+	   @Test
+	   public void Signup_success() 
+	   	{
+	   	 
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/bt_getStarted")).click();
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/input_layout_mobile_no")).sendKeys("99000000467");
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
+
+	   	    driver.findElement(By.id("android:id/button1")).click();
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/otpET")).sendKeys("111111");
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/et_first_name")).sendKeys("Sushant");
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/et_last_name")).sendKeys("Dubal");
+
+	   	    driver.navigate().back();
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/et_email_id")).sendKeys("sushant2047@interactives.in");
+
+	   	    driver.navigate().back();
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
+
+	   	    driver.findElement(By.id("android:id/button1")).click();
+
+	   	    driver.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click();
+
+	           driver.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
+
+	           driver.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
+	   	
+	   	
+
+	       }
+
+
+	
 	@AfterTest
 	public void teardown() throws Exception
 	{

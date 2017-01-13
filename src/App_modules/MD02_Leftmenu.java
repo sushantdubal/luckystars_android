@@ -1,4 +1,4 @@
-package luckystars;
+package App_modules;
 
 
 
@@ -14,7 +14,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class TC0011_signin_leftmenu_feedback {
+public class MD02_Leftmenu {
 
 	AndroidDriver driver;
 
@@ -47,8 +47,35 @@ public class TC0011_signin_leftmenu_feedback {
 		    
 		    
 		}
+		
+		@Test
+		public void signin_leftmenu_myhistory() 
+			{
+			   	 
+			   	//Left menu- Click on Burgar button
+			   	    driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")).click();
+			   	    
+			   	    //Left menu-My History
+			   	    driver.findElement(By.name("My History")).click();
+			   	    
+			   	    //Left menu-My History-Click on back button
+			   	    driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")).click();
+			}
+		
+		@Test
+		public void signin_leftmenu_winners() 
+			{
 
-
+			   	    //Left menu- Click on Burgar button
+			   	    driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")).click();
+			   	    
+			   	  //Left menu-Winners
+			   	    driver.findElement(By.name("Winners")).click();
+			   	    
+			   	    //winners -Back button
+			   	    driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")).click();
+			}
+		
 		@Test
 		public void signin_leftmenu_feedback() 
 			{
@@ -99,6 +126,8 @@ public class TC0011_signin_leftmenu_feedback {
 			   	    driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")).click();
 			   	    	    
 			}
+
+
 
 
  @AfterTest

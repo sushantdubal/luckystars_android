@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.hwpf.usermodel.DateAndTime;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -264,6 +265,10 @@ public class MD04_Draw_Flow {
 	{
 	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987")
 	
+		
+		WebElement dt = wd.findElement(By.xpath(ls.date));
+		
+		
 		
 		
 		Thread.sleep(1000);

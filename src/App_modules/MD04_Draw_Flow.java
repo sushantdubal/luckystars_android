@@ -1,12 +1,10 @@
-package luckystars;
+package App_modules;
 
 import io.appium.java_client.android.AndroidDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
-import javafx.scene.control.DatePicker;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.openqa.selenium.By;
@@ -17,11 +15,15 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import Automation_Framework.ExcelTest;
+import Automation_Framework.Locators;
 
-public class TC0001_Signin_success extends ExcelTest {
+
+public class MD04_Draw_Flow {
 	
-	Locators ls = new Locators();
-	swipe sp = new swipe();
+	Automation_Framework.Locators ls = new Locators();
+	Automation_Framework.ExcelTest et = new ExcelTest();
+	
 
 	AndroidDriver wd;
 	String Text = "OK";
@@ -53,11 +55,11 @@ public class TC0001_Signin_success extends ExcelTest {
 	@BeforeTest
 	public void forallUsers() throws MalformedURLException,InterruptedException 
 	{
-		rowCount = rowCount();
+		rowCount = et.rowCount();
 		
 		for (int i = 0; i <= rowCount; i++) 
 		{
-			super.exceldata();
+			et.exceldata();
 	
 		}
 	}
@@ -260,12 +262,7 @@ public class TC0001_Signin_success extends ExcelTest {
 
 	public void firsttimeProfile() throws InterruptedException
 	{
-	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987");
-		
-		DatePicker dt = (DatePicker) wd.findElement(By.xpath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/"
-				+ "android.widget.LinearLayout[1]"));
-		
-		System.out.println(dt);
+	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987")
 	
 		
 		

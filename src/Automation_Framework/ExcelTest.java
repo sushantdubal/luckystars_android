@@ -1,4 +1,4 @@
-package luckystars;
+package Automation_Framework;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import luckystars.TC0001_Signin_success;
+import App_modules.MD04_Draw_Flow;
+
+
 
 //import org.testng.annotations.Test;
 
@@ -17,8 +19,9 @@ public class ExcelTest {
 	XSSFSheet sh1;
 	int rowCount;
 	
-	TC0001_Signin_success tc1;
+	
 	Locators ls = new Locators();
+	MD04_Draw_Flow df  = new MD04_Draw_Flow();
 
 	public void exceldata() {
 		try {
@@ -52,13 +55,11 @@ public class ExcelTest {
 				XSSFCell otp = sh1.getRow(i).getCell(4);
 				XSSFCell postalcode = sh1.getRow(i).getCell(5);
 
-				TC0001_Signin_success.data(mobile, firstname, lastname,	emailid, otp, postalcode);
+				MD04_Draw_Flow.data(mobile, firstname, lastname,	emailid, otp, postalcode);
   
-				tc1 = new TC0001_Signin_success();
-				tc1.setUp();	
-				tc1.Signin_success();
-				rowCount();
-			
+				df.setUp();
+				df.Signin_success();
+			    rowCount();
 			}
 
 		} catch (Exception e) 

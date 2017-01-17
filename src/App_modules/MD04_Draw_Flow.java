@@ -41,7 +41,7 @@ public class MD04_Draw_Flow {
 	String msg;
 	
 
-	public void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, 
+	public static void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, 
 			String emailid, XSSFCell otp, XSSFCell postalcode) 
 	{
 		mobile1 = mobile;
@@ -88,7 +88,8 @@ public class MD04_Draw_Flow {
 	}
 
 	@Test
-	public void Signin_success() throws MalformedURLException,InterruptedException {
+	public void Signin_success() throws MalformedURLException,InterruptedException 
+	{
 		wd.findElement(By.id(ls.getStarted)).click();
 		wd.findElement(By.id(ls.mobileNo)).sendKeys(mobile1.toString());
 		wd.findElement(By.id(ls.signUp)).click();
@@ -97,12 +98,53 @@ public class MD04_Draw_Flow {
 
 		wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		
-		wd.findElement(By.id(ls.intro)).click();
-		wd.findElement(By.id(ls.intro)).click();
-		return;
+	
+		//Checking for new user and redirecting it to profile screen
+		if (wd.findElements(By.id(ls.firstName)).size() == 1) 
+		{
+			firsttimeRegistration();
+			wd.findElement(By.id(ls.intro)).click();
+			wd.findElement(By.id(ls.intro)).click();
+		} 
+		else 
+		{
+			wd.findElement(By.id(ls.intro)).click();
+			wd.findElement(By.id(ls.intro)).click();
 
+			if (wd.findElements(By.id(ls.SDraw)).size() == 1|| 
+				wd.findElements(By.id(ls.CDraw)).size() == 1||
+				wd.findElements(By.id(ls.MDraw)).size() == 1||
+				wd.findElements(By.id(ls.BDraw)).size() == 1) 
+				{
+					btnGoLucky();
+				}
+
+			//checking the info button is appearing on the tile
+			else if(wd.findElements(By.id(ls.infoBtn)).size() == 1)	
+			
+				{
+					wd.findElement(By.id(ls.infoBtn)).click();
+					Thread.sleep(1000);
+					
+					wd.findElement(By.xpath(ls.bckButton)).click();
+					horizontalSwipeRtL();	
+					btnGoLucky();
+				
+				}
+			
+			else if(wd.findElements(By.id(ls.knowmoreBtn)).size()==1)
+				{
+					btninfo_Knowmore();
+					horizontalSwipeRtL();
+					btnGoLucky();
+				}
+				
+				//Swiping through the tiles.
+					horizontalSwipeRtL();	
+					btnGoLucky();
+		}
 	}
-
+		
 	public void firsttimeRegistration() {
 		wd.findElement(By.id(ls.firstName)).clear();
 		wd.findElement(By.id(ls.firstName)).sendKeys(fname.toString());
@@ -138,6 +180,7 @@ public class MD04_Draw_Flow {
 		  wd.findElement(By.id(ls.freebies)).click(); 
 		  }
 		 
+		  
 	}
 
 	public void btninfo_Knowmore() throws InterruptedException 

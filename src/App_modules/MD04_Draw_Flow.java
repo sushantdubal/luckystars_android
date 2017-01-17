@@ -99,55 +99,7 @@ public class MD04_Draw_Flow {
 		
 		wd.findElement(By.id(ls.intro)).click();
 		wd.findElement(By.id(ls.intro)).click();
-		firsttimeProfile();
-	
-
-		//Checking for new user and redirecting it to profile screen
-		if (wd.findElements(By.id(ls.firstName)).size() == 1) 
-		{
-			firsttimeRegistration();
-			wd.findElement(By.id(ls.intro)).click();
-			wd.findElement(By.id(ls.intro)).click();
-		} 
-		else 
-		{
-			wd.findElement(By.id(ls.intro)).click();
-			wd.findElement(By.id(ls.intro)).click();
-
-			if (wd.findElements(By.id(ls.SDraw)).size() == 1|| 
-				wd.findElements(By.id(ls.CDraw)).size() == 1||
-				wd.findElements(By.id(ls.MDraw)).size() == 1||
-				wd.findElements(By.id(ls.BDraw)).size() == 1) 
-				{
-					btnGoLucky();
-				}
-
-			//checking the info button is appearing on the tile
-			else if(wd.findElements(By.id(ls.infoBtn)).size() == 1)	
-			
-				{
-					wd.findElement(By.id(ls.infoBtn)).click();
-					Thread.sleep(1000);
-					
-					wd.findElement(By.xpath(ls.bckButton)).click();
-					horizontalSwipeRtL();	
-					btnGoLucky();
-				
-				}
-			
-			else if(wd.findElements(By.id(ls.knowmoreBtn)).size()==1)
-				{
-					btninfo_Knowmore();
-					horizontalSwipeRtL();
-					btnGoLucky();
-				}
-				
-				//Swiping through the tiles.
-					horizontalSwipeRtL();	
-					btnGoLucky();
-		}
-
-	wd.quit();
+		return;
 
 	}
 

@@ -5,8 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.poi.hwpf.usermodel.DateAndTime;
+//import org.apache.poi.hwpf.usermodel.DateAndTime;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -16,14 +15,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import Automation_Framework.ExcelTest;
+//import Automation_Framework.ExcelTest;
 import Automation_Framework.Locators;
 
 
 public class MD04_Draw_Flow {
 	
 	Automation_Framework.Locators ls = new Locators();
-	Automation_Framework.ExcelTest et = new ExcelTest();
+	ExcelTest et;
 	
 
 	AndroidDriver wd;
@@ -42,7 +41,7 @@ public class MD04_Draw_Flow {
 	String msg;
 	
 
-	public static void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, 
+	public void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, 
 			String emailid, XSSFCell otp, XSSFCell postalcode) 
 	{
 		mobile1 = mobile;
@@ -264,13 +263,6 @@ public class MD04_Draw_Flow {
 	public void firsttimeProfile() throws InterruptedException
 	{
 	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987")
-	
-		
-		WebElement dt = wd.findElement(By.xpath(ls.date));
-		
-		
-		
-		
 		Thread.sleep(1000);
 		
 		

@@ -1,14 +1,13 @@
-package Automation_Framework;
+package luckystars;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import App_modules.MD04_Draw_Flow;;
+import luckystars.TC0001_Signin_success;
 
 //import org.testng.annotations.Test;
 
@@ -18,21 +17,21 @@ public class ExcelTest {
 	XSSFSheet sh1;
 	int rowCount;
 	
-	App_modules.MD04_Draw_Flow tc1;
+	TC0001_Signin_success tc1;
+	Locators ls = new Locators();
 
 	public void exceldata() {
 		try {
 
 			// Specify the file path which you want to create or write
-			File src = new File("/Users/Desktop/Test Data/Testdata.xlsx");
-			
-			
-			
+			File src = new File(ls.excelFileLoc);
+
 			// Load the file
 			FileInputStream fis = new FileInputStream(src);
 
 			// load the workbook
 			// @SuppressWarnings("resource")
+			@SuppressWarnings("resource")
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 
 			// get the sheet which you want to modify or create
@@ -40,7 +39,8 @@ public class ExcelTest {
 
 			System.out.println(sh1.getFirstRowNum());
 
-			for (int i = 1; 1 <= sh1.getLastRowNum() - 1; i++) {
+			for (int i = 1; 1 <= sh1.getLastRowNum() - 1; i++) 
+			{
 
 				// getRow specify which row we want to read and getCell which
 				// column
@@ -52,31 +52,35 @@ public class ExcelTest {
 				XSSFCell otp = sh1.getRow(i).getCell(4);
 				XSSFCell postalcode = sh1.getRow(i).getCell(5);
 
-				MD04_Draw_Flow.data(mobile, firstname, lastname, emailid, otp, postalcode);
+				TC0001_Signin_success.data(mobile, firstname, lastname,	emailid, otp, postalcode);
   
-				tc1 = new MD04_Draw_Flow();
-				tc1.setUp();
+				tc1 = new TC0001_Signin_success();
+				tc1.setUp();	
 				tc1.Signin_success();
+				rowCount();
 			
 			}
 
-		} catch (Exception e) {
-
+		} catch (Exception e) 
+		{
 			System.out.println(e.getMessage());
-
+			return;
 		}
 		
 		
 	}
 
-	public int rowCount() {
+	public int rowCount() 
+	{
 
 		int rowNo = 0;
-		try {
+		try 
+		{
 			rowNo = sh1.getLastRowNum();
 		}
 
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			System.out.println(e.getMessage());
 		}
 		return rowNo;

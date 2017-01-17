@@ -1,4 +1,4 @@
-package App_modules;
+package luckystars;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -6,18 +6,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import Automation_Framework.ExcelTest;
+import javafx.scene.control.DatePicker;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class MD04_Draw_Flow extends ExcelTest {
+public class TC0001_Signin_success extends ExcelTest {
+	
+	Locators ls = new Locators();
+	swipe sp = new swipe();
 
 	AndroidDriver wd;
 	String Text = "OK";
@@ -31,8 +35,12 @@ public class MD04_Draw_Flow extends ExcelTest {
 	static XSSFCell otp1;
 	static XSSFCell postalcode1;
 	int rowCount;
+	String goLuckyText;
+	String msg;
+	
 
-	public static void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, String emailid, XSSFCell otp, XSSFCell postalcode) 
+	public static void data(XSSFCell mobile, XSSFCell firstname,XSSFCell lastname, 
+			String emailid, XSSFCell otp, XSSFCell postalcode) 
 	{
 		mobile1 = mobile;
 		fname = firstname;
@@ -47,188 +55,197 @@ public class MD04_Draw_Flow extends ExcelTest {
 	{
 		rowCount = rowCount();
 		
-		for (int i = 0; i <= rowCount; i++) {
+		for (int i = 0; i <= rowCount; i++) 
+		{
 			super.exceldata();
-
-			setUp();
-			Signin_success();
+	
 		}
 	}
 
 	@Test
 	public void setUp() throws MalformedURLException {
 
-		
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("appium-version", "1.4");
+		capabilities.setCapability("appium-version", "1.0");
 		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("platformVersion", "4.3");
-		capabilities.setCapability("deviceName", "ZY222W9V5J");
-		capabilities.setCapability("app", "/Users/Desktop/LuckyStars.apk");
+		capabilities.setCapability("platformVersion", "6.0.1");
+		capabilities.setCapability("deviceName", "0123456789ABCDEF");
+		capabilities.setCapability("app","/Users/sushantdubal/Desktop/AndroidApp/LuckyStars.apk");
 
 		try 
 		{
-			wd = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+			wd = new AndroidDriver(new URL(ls.url),capabilities);
 			wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		}
 
 		catch (Exception e) 
-		{
-			System.out.println(e.getMessage());
+		{	
+			System.out.println(e.getMessage());			
 		}
 
 	}
 
 	@Test
 	public void Signin_success() throws MalformedURLException,InterruptedException {
-		wd.findElement(By.id("in.interactive.luckystars:id/bt_getStarted")).click();
-		wd.findElement(By.id("in.interactive.luckystars:id/input_layout_mobile_no")).sendKeys(mobile1.toString());
-		wd.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
-		wd.findElement(By.id("android:id/button1")).click();
-		wd.findElement(By.id("in.interactive.luckystars:id/otpET")).sendKeys(otp1.toString());
+		wd.findElement(By.id(ls.getStarted)).click();
+		wd.findElement(By.id(ls.mobileNo)).sendKeys(mobile1.toString());
+		wd.findElement(By.id(ls.signUp)).click();
+		wd.findElement(By.id(ls.androidBtn)).click();
+		wd.findElement(By.id(ls.OTP)).sendKeys(otp1.toString());
 
 		wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		
+		wd.findElement(By.id(ls.intro)).click();
+		wd.findElement(By.id(ls.intro)).click();
+		firsttimeProfile();
+	
 
-		if (wd.findElements(By.id("in.interactive.luckystars:id/et_first_name")).size() == 1) 
+		//Checking for new user and redirecting it to profile screen
+		if (wd.findElements(By.id(ls.firstName)).size() == 1) 
 		{
 			firsttimeRegistration();
-			wd.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
-			wd.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
+			wd.findElement(By.id(ls.intro)).click();
+			wd.findElement(By.id(ls.intro)).click();
 		} 
 		else 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
-			wd.findElement(By.id("in.interactive.luckystars:id/img_homeintro")).click();
+			wd.findElement(By.id(ls.intro)).click();
+			wd.findElement(By.id(ls.intro)).click();
 
-			if (wd.findElements(By.id("in.interactive.luckystars:id/sd_btn_go_lucky")).size() == 1|| 
-					wd.findElements(By.id("in.interactive.luckystars:id/cd_btn_go_lucky")).size() == 1
-					|| wd.findElements(By.id("in.interactive.luckystars:id/md_btn_go_lucky")).size() == 1
-					|| wd.findElements(By.id("in.interactive.luckystars:id/bd_btn_go_lucky")).size() == 1) 
-			{
-				btnGoLucky();
-			}
+			if (wd.findElements(By.id(ls.SDraw)).size() == 1|| 
+				wd.findElements(By.id(ls.CDraw)).size() == 1||
+				wd.findElements(By.id(ls.MDraw)).size() == 1||
+				wd.findElements(By.id(ls.BDraw)).size() == 1) 
+				{
+					btnGoLucky();
+				}
 
-			else 
-			{
-			//	wd.findElement(By.id("in.interactive.luckystars:id/iv_ads_knowmore")).click();
-				//wd.scrollTo("Disclaimer");
-				//verticalSwipeUtD();
-				//verticalSwipeDtU();
-				horizontalSwipeRtL();
-				btnGoLucky();
-			}
-
+			//checking the info button is appearing on the tile
+			else if(wd.findElements(By.id(ls.infoBtn)).size() == 1)	
+			
+				{
+					wd.findElement(By.id(ls.infoBtn)).click();
+					Thread.sleep(1000);
+					
+					wd.findElement(By.xpath(ls.bckButton)).click();
+					horizontalSwipeRtL();	
+					btnGoLucky();
+				
+				}
+			
+			else if(wd.findElements(By.id(ls.knowmoreBtn)).size()==1)
+				{
+					btninfo_Knowmore();
+					horizontalSwipeRtL();
+					btnGoLucky();
+				}
+				
+				//Swiping through the tiles.
+					horizontalSwipeRtL();	
+					btnGoLucky();
 		}
-		wd.quit();
+
+	wd.quit();
 
 	}
 
 	public void firsttimeRegistration() {
-		wd.findElement(By.id("in.interactive.luckystars:id/et_first_name")).clear();
-		wd.findElement(By.id("in.interactive.luckystars:id/et_first_name")).sendKeys(fname.toString());
-		wd.findElement(By.id("in.interactive.luckystars:id/et_last_name")).clear();
-		wd.findElement(By.id("in.interactive.luckystars:id/et_last_name")).sendKeys(lastname1.toString());
+		wd.findElement(By.id(ls.firstName)).clear();
+		wd.findElement(By.id(ls.firstName)).sendKeys(fname.toString());
+		wd.findElement(By.id(ls.lastName)).clear();
+		wd.findElement(By.id(ls.lastName)).sendKeys(lastname1.toString());
 		wd.navigate().back();
 
-		wd.findElement(By.id("in.interactive.luckystars:id/et_email_id")).sendKeys(emailid1);
+		wd.findElement(By.id(ls.emailidString)).sendKeys(emailid1);
 		wd.navigate().back();
 
-		wd.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
-		wd.findElement(By.id("android:id/button1")).click();
+		wd.findElement(By.id(ls.signUp)).click();
+		wd.findElement(By.id(ls.androidBtn)).click();
 
-		wd.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click();
+		wd.findElement(By.id(ls.freebies)).click();
 
 		
-		  boolean emailmsg =
-		  wd.findElement(By.id("android:id/message")).isDisplayed();
+		boolean emailmsg = wd.findElement(By.id(ls.androidBtn)).isDisplayed();
 		  
 		  if(emailmsg==true) 
 		  {
-		  wd.findElement(By.id("android:id/button1")).click();
+		  wd.findElement(By.id(ls.androidBtn)).click();
 		  
-		  wd.findElement(By.id("in.interactive.luckystars:id/et_email_id")).clear();
-		  wd.findElement(By.id("in.interactive.luckystars:id/et_email_id")).sendKeys("krishna98515362@inetactive.in"); wd.navigate().back();
+		  wd.findElement(By.id(ls.emailidString)).clear();
+		  wd.findElement(By.id(ls.emailidString)).sendKeys(ls.otherEmail);
+		  wd.navigate().back();
 		  
-		  wd.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click(); 
-		  wd.findElement(By.id("android:id/button1")).click();
-		  wd.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click(); 
+		  wd.findElement(By.id(ls.signUp)).click(); 
+		  wd.findElement(By.id(ls.androidBtn)).click();
+		  wd.findElement(By.id(ls.freebies)).click(); 
 		  }
 		  else
 		  {
-		  wd.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click(); 
+		  wd.findElement(By.id(ls.freebies)).click(); 
 		  }
 		 
 	}
 
 	public void btninfo_Knowmore() throws InterruptedException 
 	{
-		infoicon = wd.findElements(By.id("in.interactive.luckystars:id/sd_iv_draw_details")).size();
-
-		if (infoicon == 1) 
-		{
-			wd.findElement(By.id("in.interactive.luckystars:id/sd_iv_draw_details")).click();
-
-			Thread.sleep(2000);
-
-			wd.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.view.View[1]/android.widget.ImageButton[1]")).click();
-			wd.findElement(By.id("in.interactive.luckystars:id/sd_btn_go_lucky")).click();
-		}
-
-		else if (wd.findElements(By.id("in.interactive.luckystars:id/iv_ads_knowmore")).size() == 1) 
-		{
-			wd.findElement(By.id("in.interactive.luckystars:id/iv_ads_knowmore")).click();
-			// btnGoLucky();
-		}
-
-		else
-		{
-			wd.findElement(By.id("in.interactive.luckystars:id/md_iv_draw_details")).click();
-
-			wd.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.view.View[1]/android.widget.ImageButton[1]")).click();
-			wd.findElement(By.id("in.interactive.luckystars:id/md_btn_go_lucky")).click();
-		}
+		wd.findElement(By.id(ls.knowmoreBtn)).click();
+		//horizontalSwipeLtR();
+		
+		wd.scrollTo("Disclaimer");
+		wd.scrollTo("Exit");
+		
+		wd.findElement(By.id(ls.exitBtn)).click();
+		wd.findElement(By.id(ls.androidBtn)).click();
 	}
 
+	
+	
 	public void btnGoLucky() throws InterruptedException {
-		if (wd.findElements(By.id("in.interactive.luckystars:id/sd_btn_go_lucky")).size() == 1) 
+		if (wd.findElements(By.id(ls.SDraw)).size() == 1) 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/sd_btn_go_lucky")).click();
-			if (wd.findElements(By.id("in.interactive.luckystars:id/submitBtn")).size() == 1) 
+			wd.findElement(By.id(ls.SDraw)).click();
+			if (wd.findElements(By.xpath(ls.profileSubmit)).size() == 1) 
 			{
 				firsttimeProfile();
-			} else 
+			} 
+			else 
 			{
 				btnSubmit();
 			}
-		} else if (wd.findElements(By.id("in.interactive.luckystars:id/md_btn_go_lucky")).size() == 1) 
+		} 
+		else if (wd.findElements(By.id(ls.MDraw)).size() == 1) 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/md_btn_go_lucky")).click();
-			if (wd.findElements(By.id("in.interactive.luckystars:id/submitBtn")).size() == 1) 
+			wd.findElement(By.id(ls.MDraw)).click();
+			if (wd.findElements(By.id(ls.profileSubmit)).size() == 1) 
 			{
 				firsttimeProfile();
-			} else 
+			} 
+			else 
 			{
 				btnSubmit();
 			}
-		} else if (wd.findElements(By.id("in.interactive.luckystars:id/cd_btn_go_lucky")).size() == 1) 
+		} 
+		else if (wd.findElements(By.id(ls.CDraw)).size() == 1) 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/cd_btn_go_lucky")).click();
-			if (wd.findElements(By.id("in.interactive.luckystars:id/submitBtn")).size() == 1) 
+			wd.findElement(By.id(ls.CDraw)).click();
+			if (wd.findElements(By.id(ls.profileSubmit)).size() == 1) 
 			{
 				firsttimeProfile();
-			} else 
+			} 
+			else 
 			{
 				btnSubmit();
 			}
 		}
 
-		else if (wd.findElements(By.id("in.interactive.luckystars:id/bd_btn_go_lucky")).size() == 1) 
+		else if (wd.findElements(By.id(ls.BDraw)).size() == 1) 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/bd_btn_go_lucky")).click();
-			if (wd.findElements(By.id("in.interactive.luckystars:id/submitBtn")).size() == 1) 
+			wd.findElement(By.id(ls.BDraw)).click();
+			if (wd.findElements(By.id(ls.profileSubmit)).size() == 1) 
 			{
 				firsttimeProfile();
-			} else 
+			} 
+			else 
 			{
 				btnSubmit();
 			}
@@ -236,17 +253,30 @@ public class MD04_Draw_Flow extends ExcelTest {
 
 		else 
 		{
-			return;
+			horizontalSwipeLtR();
+			btnGoLucky();
 		}
 	}
 
-	public void firsttimeProfile() throws InterruptedException {
-		wd.findElement(By.id("in.interactive.luckystars:id/et_birthday")).click();
+	public void firsttimeProfile() throws InterruptedException
+	{
+	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987");
+		
+		DatePicker dt = (DatePicker) wd.findElement(By.xpath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/"
+				+ "android.widget.LinearLayout[1]"));
+		
+		System.out.println(dt);
+	
+		
+		
 		Thread.sleep(1000);
-
-		// wd.findElement(By.id("in.interactive.luckystars:id/change_date_button")).click();
-		wd.findElement(By.id("in.interactive.luckystars:id/et_pincode")).sendKeys(postalcode1.toString());
-		wd.findElement(By.id("in.interactive.luckystars:id/submitBtn")).click();
+		
+		
+	    wd.findElement(By.id(ls.changeDate)).click();
+	    
+	    
+		wd.findElement(By.id(ls.postalCode)).sendKeys(postalcode1.toString());
+		wd.findElement(By.id(ls.profileSubmit)).click();
 		wd.findElement(By.name("CONFIRM")).click();
 
 		btnSubmit();
@@ -255,28 +285,28 @@ public class MD04_Draw_Flow extends ExcelTest {
 
 	public void btnSubmit() {
 		int i = wd.findElements(
-				By.id("in.interactive.luckystars:id/btn_submit")).size();
+				By.id(ls.submitBtn)).size();
 
 		if (i == 1) {
 			while (!Text.equalsIgnoreCase(Text1)) {
-				if (wd.findElements(By.id("in.interactive.luckystars:id/btn_go_back")).size() == 1) 
+				if (wd.findElements(By.id(ls.gobackBtn)).size() == 1) 
 				{
-					wd.findElement(By.id("in.interactive.luckystars:id/btn_go_back")).click();
-					return;
+					wd.findElement(By.id(ls.gobackBtn)).click();
+					break;
 				}
 
-				wd.findElement(By.id("in.interactive.luckystars:id/rb_first")).click();
-				wd.findElement(By.id("in.interactive.luckystars:id/btn_submit")).click();
+				wd.findElement(By.id(ls.radio)).click();
+				wd.findElement(By.id(ls.submitBtn)).click();
 
-				Text1 = wd.findElement(By.id("android:id/button1")).getText();
+				Text1 = wd.findElement(By.id(ls.androidBtn)).getText();
 
 				if (Text.equalsIgnoreCase(Text1)) 
 				{
-					wd.findElement(By.id("android:id/button1")).click();
-					return;
+					wd.findElement(By.id(ls.androidBtn)).click();
+					break;
 				} else 
 				{
-					wd.findElement(By.id("android:id/button1")).click();
+					wd.findElement(By.id(ls.androidBtn)).click();
 
 				}
 			}
@@ -284,36 +314,43 @@ public class MD04_Draw_Flow extends ExcelTest {
 
 		else 
 		{
-			wd.findElement(By.id("in.interactive.luckystars:id/btn_go_back")).click();
+			wd.findElement(By.id(ls.gobackBtn)).click();
 			return;
 		}
 	}
-
-	public void notification() throws InterruptedException {
-		wd.findElement(By.id("in.interactive.luckystars:id/hotlist_bell")).click();
-		Thread.sleep(2000);
-		wd.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.view.View[1]/android.widget.ImageButton[1]")).click();
+	
+	public void notification() throws InterruptedException 
+	{
+		//wd.findElement(By.id(ls.notif)).click();
+		Thread.sleep(2000);	
+	    verticalSwipeBtU();
+	    horizontalSwipeLtR();
+	    horizontalSwipeRtL();
+	    verticalSwipeUtB();
+	        
+		//wd.findElement(By.xpath(ls.notifBack)).click();
 
 	}
+	
 	
 	public void horizontalSwipeRtL()
 	{
 		wd.swipe(0, 990, 164, 0, 3000);
 	}
 
+	public void verticalSwipeBtU()
+	{
+		wd.swipe(0, 0, 0, 264, 3000);
+	}
+	
 	public void horizontalSwipeLtR()
 	{
-		wd.swipe(990, 0, 0, 164, 3000);
-	}
+		wd.swipe(500, 0, 900,0, 3000);
+	}	
 	
-	public void verticalSwipeUtD()
+	public void verticalSwipeUtB()
 	{
-		wd.swipe(-164, -990, 0, 0, 3000);
-	}
-	
-	public void verticalSwipeDtU()
-	{
-		wd.swipe(-990, -164, 0, 0, 3000);
+		wd.swipe(0, 264, 0, 0, 3000);
 	}
 	
 	
@@ -322,7 +359,5 @@ public class MD04_Draw_Flow extends ExcelTest {
 	public void teardown() throws Exception {
 		// wd.quit();
 	}
-
-	
 
 }

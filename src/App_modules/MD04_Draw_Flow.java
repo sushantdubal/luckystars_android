@@ -64,6 +64,7 @@ public class MD04_Draw_Flow {
 	}
 
 	@Test
+
 	public void setUp() throws MalformedURLException {
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();

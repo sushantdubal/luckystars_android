@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class ScreenshotOnPassFail 
 {
  static AndroidDriver wd;
+ 
 
  @BeforeClass
  public void setUp() throws Exception {

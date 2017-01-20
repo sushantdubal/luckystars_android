@@ -18,7 +18,8 @@ public class ExcelTest {
 	int rowCount;
 	
 	MD04_Draw_Flow df;
-	Automation_Framework.Locators ls;
+	Automation_Framework.Locators ls
+	;
 
 	public void exceldata() {
 		try {

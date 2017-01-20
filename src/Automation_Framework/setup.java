@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 public class setup {
 
 	AndroidDriver wd;
+	
 
 	@BeforeTest
 	public void setUp() throws MalformedURLException {

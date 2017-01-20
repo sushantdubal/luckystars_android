@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="luckystars.TC0001_Signin_success">
+      <class name="App_modules.MD04_Draw_Flow">
         <methods>
-          <include name="forallUsers"/>
           <include name="Signin_success"/>
           <include name="setUp"/>
+          <include name="forallUsers"/>
         </methods>
-      </class> <!-- luckystars.TC0001_Signin_success -->
+      </class> <!-- App_modules.MD04_Draw_Flow -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

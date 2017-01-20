@@ -22,6 +22,7 @@ public class MD01_On_boarding
 	@BeforeTest
 	public void setUp() throws MalformedURLException
 	{
+		
 		System.out.println("Krish");
 		//Created object of DesiredCapabilities class.
 		DesiredCapabilities capabilities = new DesiredCapabilities();

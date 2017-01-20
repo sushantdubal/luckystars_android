@@ -22,6 +22,7 @@ public class MD02_Leftmenu {
 		public void setUp() throws MalformedURLException
 			{
 			 
+			
 			 DesiredCapabilities capabilities = new DesiredCapabilities();
 			 capabilities.setCapability("appium-version", "1.0");
 			 capabilities.setCapability("platformName", "Android");

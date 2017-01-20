@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 
 public class setup {
 
-	AndroidDriver driver;
+	AndroidDriver wd;
 
 	@BeforeTest
 	public void setUp() throws MalformedURLException {
@@ -35,51 +35,51 @@ public class setup {
 		capabilities.setCapability("deviceName", "ZY222W9V5J");
 		capabilities.setCapability("app", "/Users/Desktop/LuckyStars.apk");
 
-		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+		wd = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
 				capabilities);
 
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
 	}
 
 	@Test
 	public void Signup_success() {
 
-		driver.findElement(By.id("in.interactive.luckystars:id/bt_getStarted")).click();
+		wd.findElement(By.id("in.interactive.luckystars:id/bt_getStarted")).click();
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/input_layout_mobile_no")).sendKeys("9987654331");
+		wd.findElement(By.id("in.interactive.luckystars:id/input_layout_mobile_no")).sendKeys("9987654331");
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
+		wd.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
 		takeScreenShot();
 
-		driver.findElement(By.id("android:id/button1")).click();
+		wd.findElement(By.id("android:id/button1")).click();
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/otpET")).sendKeys("111111");
+		wd.findElement(By.id("in.interactive.luckystars:id/otpET")).sendKeys("111111");
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/et_first_name")).sendKeys("Sushant");
+		wd.findElement(By.id("in.interactive.luckystars:id/et_first_name")).sendKeys("Sushant");
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/et_last_name")).sendKeys("Dubal");
+		wd.findElement(By.id("in.interactive.luckystars:id/et_last_name")).sendKeys("Dubal");
 		takeScreenShot();
 
-		driver.navigate().back();
+		wd.navigate().back();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/et_email_id")).sendKeys("sushant803@interactives.in");
+		wd.findElement(By.id("in.interactive.luckystars:id/et_email_id")).sendKeys("sushant803@interactives.in");
 		takeScreenShot();
 
-		driver.navigate().back();
+		wd.navigate().back();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
+		wd.findElement(By.id("in.interactive.luckystars:id/btn_signup")).click();
 		takeScreenShot();
 
-		driver.findElement(By.id("android:id/button1")).click();
+		wd.findElement(By.id("android:id/button1")).click();
 		takeScreenShot();
 
-		driver.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click();
+		wd.findElement(By.id("in.interactive.luckystars:id/btn_chkfreebies")).click();
 		takeScreenShot();
 
 	}
@@ -95,7 +95,7 @@ public class setup {
 		destDir = "screenshots";
 
 		// Capture screenshot.
-		File scrFile = ((TakesScreenshot) driver)
+		File scrFile = ((TakesScreenshot) wd)
 				.getScreenshotAs(OutputType.FILE);
 
 		// Set date format to set It as screenshot file name.
@@ -120,7 +120,7 @@ public class setup {
 
 	@AfterTest
 	public void teardown() throws Exception {
-		 driver.quit();
+		 wd.quit();
 	}
 
 }

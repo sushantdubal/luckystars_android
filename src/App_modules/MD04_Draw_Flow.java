@@ -5,7 +5,9 @@ import io.appium.java_client.android.AndroidDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-//import org.apache.poi.hwpf.usermodel.DateAndTime;
+
+//import javafx.scene.control.DatePicker;
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -14,16 +16,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-//import Automation_Framework.ExcelTest;
-import Automation_Framework.Locators;
-
+import org.apache.xmlbeans.XmlBeans;
 
 public class MD04_Draw_Flow {
 	
-	Automation_Framework.Locators ls = new Locators();
+	Automation_Framework.Locators ls = new Automation_Framework.Locators();
 	ExcelTest et;
-	
 
 	AndroidDriver wd;
 	String Text = "OK";
@@ -55,11 +53,12 @@ public class MD04_Draw_Flow {
 	@BeforeTest
 	public void forallUsers() throws MalformedURLException,InterruptedException 
 	{
-		rowCount = et.rowCount();
+		et = new ExcelTest();
 		
 		for (int i = 0; i <= rowCount; i++) 
 		{
 			et.exceldata();
+			rowCount = et.rowCount();
 	
 		}
 	}
@@ -88,8 +87,7 @@ public class MD04_Draw_Flow {
 	}
 
 	@Test
-	public void Signin_success() throws MalformedURLException,InterruptedException 
-	{
+	public void Signin_success() throws MalformedURLException,InterruptedException {
 		wd.findElement(By.id(ls.getStarted)).click();
 		wd.findElement(By.id(ls.mobileNo)).sendKeys(mobile1.toString());
 		wd.findElement(By.id(ls.signUp)).click();
@@ -98,7 +96,11 @@ public class MD04_Draw_Flow {
 
 		wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		
+		wd.findElement(By.id(ls.intro)).click();
+		wd.findElement(By.id(ls.intro)).click();
+		firsttimeProfile();
 	
+
 		//Checking for new user and redirecting it to profile screen
 		if (wd.findElements(By.id(ls.firstName)).size() == 1) 
 		{
@@ -143,8 +145,11 @@ public class MD04_Draw_Flow {
 					horizontalSwipeRtL();	
 					btnGoLucky();
 		}
+
+	wd.quit();
+
 	}
-		
+
 	public void firsttimeRegistration() {
 		wd.findElement(By.id(ls.firstName)).clear();
 		wd.findElement(By.id(ls.firstName)).sendKeys(fname.toString());
@@ -180,7 +185,6 @@ public class MD04_Draw_Flow {
 		  wd.findElement(By.id(ls.freebies)).click(); 
 		  }
 		 
-		  
 	}
 
 	public void btninfo_Knowmore() throws InterruptedException 
@@ -257,7 +261,15 @@ public class MD04_Draw_Flow {
 
 	public void firsttimeProfile() throws InterruptedException
 	{
-	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987")
+	//	wd.findElement(By.id(ls.birthday)).sendKeys("16/5/1987");
+		
+		// dt = (DatePicker) wd.findElement(By.xpath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/"
+		//		+ "android.widget.LinearLayout[1]"));DatePicker
+		
+		//System.out.println(dt);
+	
+		
+		
 		Thread.sleep(1000);
 		
 		
@@ -293,7 +305,7 @@ public class MD04_Draw_Flow {
 				{
 					wd.findElement(By.id(ls.androidBtn)).click();
 					break;
-				} else 
+				}	else 
 				{
 					wd.findElement(By.id(ls.androidBtn)).click();
 

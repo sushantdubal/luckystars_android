@@ -48,4 +48,31 @@ public class Locators {
 	public String profileSubmit = "in.interactive.luckystars:id/submitBtn";
 	public String goLuckyNewText = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/"
 			+ "android.widget.LinearLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]";
+	
+	public String FAQs = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.support.v7.widget.RecyclerView[1]/"
+			+ "android.widget.LinearLayout[5]/android.widget.TextView[1]";
+	
+	public String FAQsbackBtn = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.view.ViewGroup[1]/"
+			+ "android.widget.ImageButton[1]";
+	
+	public String menuBtn = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.support.v4.widget.DrawerLayout[1]/android.widget.LinearLayout[1]/"
+			+ "android.widget.LinearLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]";
+	
+	public String feedbackTxt = "in.interactive.luckystars:id/et_feedback_message";
+	public String feedback ="It's an Awesome App";
+	public String feedbackSS = "in.interactive.luckystars:id/iv_screen_shot";
+	
+	public String feedbackGallery = "//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/"
+			+ "android.widget.TextView[2]";
+	
+	public String feedbackCamera = "//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/"
+			+ "android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/"
+			+ "android.widget.TextView[1]";
+	
+
 }

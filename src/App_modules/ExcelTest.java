@@ -6,13 +6,8 @@ import java.io.FileInputStream;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//import org.junit.Test;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
-import App_modules.MD04_Draw_Flow;
-
-
+import App_modules.MD04_Draw_Flow;;
 
 //import org.testng.annotations.Test;
 
@@ -22,22 +17,21 @@ public class ExcelTest {
 	XSSFSheet sh1;
 	int rowCount;
 	
-	
-	Automation_Framework.Locators ls = new Automation_Framework.Locators();
-	App_modules.MD04_Draw_Flow df; 
+	MD04_Draw_Flow df;
+	Automation_Framework.Locators ls;
 
-	@BeforeTest
 	public void exceldata() {
 		try {
 
+		ls =	new Automation_Framework.Locators();
 			// Specify the file path which you want to create or write
 			File src = new File(ls.excelFileLoc);
 
 			// Load the file
 			FileInputStream fis = new FileInputStream(src);
 
-			// load the workbook
-			// @SuppressWarnings("resource")
+			// load the workbook	
+			
 			@SuppressWarnings("resource")
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 
@@ -59,37 +53,39 @@ public class ExcelTest {
 				XSSFCell otp = sh1.getRow(i).getCell(4);
 				XSSFCell postalcode = sh1.getRow(i).getCell(5);
 
-				
-				MD04_Draw_Flow.data(mobile, firstname, lastname,emailid, otp, postalcode);
-				
-				df =new MD04_Draw_Flow();
-				df.setUp();
+				MD04_Draw_Flow.data(mobile, firstname, lastname,	emailid, otp, postalcode);
+  
+				df = new MD04_Draw_Flow();
+				df.setUp();	
 				df.Signin_success();
-			    rowCount();
+				rowCount();
+			
 			}
 
 		} catch (Exception e) 
 		{
-			System.out.println(e.getMessage());
+			System.out.println(e.getLocalizedMessage());
 			return;
 		}
 		
 		
 	}
 
-	@Test
 	public int rowCount() 
 	{
+
 		int rowNo = 0;
 		try 
 		{
 			rowNo = sh1.getLastRowNum();
 		}
+
 		catch (Exception e) 
 		{
 			System.out.println(e.getMessage());
 		}
 		return rowNo;
+
 	}
 
 }
